@@ -1,0 +1,53 @@
+[
+  {
+    "project_id": 1,
+    "title": "Product Management",
+    "description": "This is my project description",
+    "tasks": [
+      {
+        "task_id": 1,
+        "task_title": "Task one",
+        "task_description": "kkkkkk",
+        "task_status": {},
+        "assign_to": [{}],
+        "deadline": ""
+      }
+    ],
+    "recent_activities": [],
+    "member": []
+  },
+  {
+    "project_id": 2,
+    "title": "Student club management",
+    "description": "kkkkk",
+    "tasks": [
+      {
+        "task_id": 1,
+        "task_title": "Task",
+        "task_description": "kkkkkk",
+        "task_status": {},
+        "assign_to": [{}],
+        "deadline": ""
+      }
+    ],
+    "recent_activities": [],
+    "member": []
+  },
+  {
+    "project_id": 3,
+    "title": "Banking app",
+    "description": "kkkkk",
+    "tasks": [
+      {
+        "task_id": 1,
+        "task_title": "Task",
+        "task_description": "kkkkkk",
+        "task_status": {},
+        "assign_to": [{}],
+        "deadline": ""
+      }
+    ],
+    "recent_activities": [],
+    "member": []
+  }
+]

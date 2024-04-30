@@ -1,8 +1,17 @@
 "use client";
+
+import { RotatingLines } from "react-loader-spinner";
+
 const Loading = () => {
   return (
-    <div>
-      <h1>Loading</h1>
+    <div className="flex justify-center items-center h-screen">
+      <RotatingLines
+        visible={true}
+        width="96"
+        strokeWidth="5"
+        animationDuration="0.75"
+        ariaLabel="rotating-lines-loading"
+      />
     </div>
   );
 };
