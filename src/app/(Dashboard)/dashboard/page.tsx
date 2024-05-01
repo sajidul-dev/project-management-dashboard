@@ -1,8 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import Loading from "../loading";
-import getMovies from "../hooks/projects";
+import getMovies from "../../hooks/projects";
+import Loading from "../../loading";
 
 const Dashboard = () => {
   const { data, isLoading, isError } = useQuery({
