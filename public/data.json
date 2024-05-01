@@ -8,13 +8,13 @@
         "task_id": 1,
         "task_title": "Task one",
         "task_description": "kkkkkk",
-        "task_status": {},
-        "assign_to": [{}],
+        "task_status": { "status_id": 1 },
+        "assign_to": [1, 2],
         "deadline": ""
       }
     ],
-    "recent_activities": [],
-    "member": []
+    "recent_activities": [{ "status_id": 1, "date": "fdfff" }],
+    "member": [1, 2]
   },
   {
     "project_id": 2,

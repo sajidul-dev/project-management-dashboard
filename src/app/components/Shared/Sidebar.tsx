@@ -9,6 +9,8 @@ import { IoSettings } from "react-icons/io5";
 import { PiUsersFourFill } from "react-icons/pi";
 
 const Sidebar = () => {
+  const navigate = useRouter();
+  const pathname = usePathname();
   const isExpandSidebar = useIsExpandSidebar(
     (state: any) => state.isExpandSidebar
   );
@@ -16,27 +18,23 @@ const Sidebar = () => {
     (state: any) => state.setIsExpandSidebar
   );
 
-  const navigate = useRouter();
-  const pathname = usePathname();
   return (
     <div
       className={`h-[100vh] hidden  ${
         isExpandSidebar ? "w-[250px] px-2" : "w-10 px-8"
       }    py-4 bg-[#171E40] 
-         lg:flex flex-col h-screen justify-between  transition-all duration-500 ease-in-out border border-[#185A77]`}
-    >
+         lg:flex flex-col h-screen justify-between  transition-all duration-500 ease-in-out border border-[#185A77]`}>
       <div className=" ">
         {isExpandSidebar ? (
           <div
             onClick={() => {
-              navigate.push("/admin");
+              navigate.push("/");
             }}
             style={{
               backgroundColor:
                 pathname === "/admin" || pathname === "/" ? "#0F8BB6" : "",
             }}
-            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 rounded-md mb-3 flex items-center gap-2 transition-all duration-2000 ease-in-out"
-          >
+            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 rounded-md mb-3 flex items-center gap-2 transition-all duration-2000 ease-in-out">
             <FaHouse
               className={
                 pathname === "/admin" || pathname === "/"
@@ -69,8 +67,7 @@ const Sidebar = () => {
                 ? "#0F8BB6"
                 : "",
             }}
-            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 rounded-md mb-3 flex items-center gap-2 transition-all duration-2000 ease-in-out"
-          >
+            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 rounded-md mb-3 flex items-center gap-2 transition-all duration-2000 ease-in-out">
             <PiUsersFourFill
               className={
                 pathname.includes("/admin/users")
@@ -102,8 +99,7 @@ const Sidebar = () => {
                 ? "#0F8BB6"
                 : "",
             }}
-            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 mb-3 rounded-md flex items-center gap-2 transition-all duration-2000 ease-in-out"
-          >
+            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 mb-3 rounded-md flex items-center gap-2 transition-all duration-2000 ease-in-out">
             <GiTabletopPlayers
               className={
                 pathname.includes("/admin/players")
@@ -111,7 +107,7 @@ const Sidebar = () => {
                   : " text-xl text-white"
               }
             />
-            <Link href="">Players</Link>
+            <Link href="">Task Management</Link>
           </div>
         ) : (
           <GiTabletopPlayers
@@ -122,107 +118,6 @@ const Sidebar = () => {
             }
           />
         )}
-        {isExpandSidebar ? (
-          <div
-            onClick={() => {
-              navigate.push("/admin/betHistory");
-            }}
-            style={{
-              backgroundColor: pathname.includes("/admin/betHistory")
-                ? "#0F8BB6"
-                : "",
-            }}
-            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 mb-3 rounded-md flex items-center gap-2 transition-all duration-2000 ease-in-out"
-          >
-            <HiCubeTransparent
-              className={
-                pathname.includes("/admin/betHistory")
-                  ? "text-xl text-black"
-                  : " text-xl text-white"
-              }
-            />
-            <Link href="">Bet History</Link>
-          </div>
-        ) : (
-          <HiCubeTransparent
-            className={
-              pathname.includes("/admin/betHistory")
-                ? "bg-[#0F8BB6] p-1 rounded-md text-3xl cursor-pointer  mb-4 -ml-3 text-black"
-                : " text-3xl cursor-pointer mb-4 -ml-3 text-white"
-            }
-          />
-        )}
-        {isExpandSidebar ? (
-          <div
-            onClick={() => {
-              navigate.push("/admin/spinHistory");
-            }}
-            style={{
-              backgroundColor: pathname.includes("/admin/spinHistory")
-                ? "#0F8BB6"
-                : "",
-            }}
-            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 mb-3 rounded-md flex items-center gap-2 transition-all duration-2000 ease-in-out"
-          >
-            <GiCartwheel
-              className={
-                pathname.includes("/admin/spinHistory")
-                  ? "text-xl text-white"
-                  : " text-xl text-white"
-              }
-            />
-            <Link href="">Spin History</Link>
-          </div>
-        ) : (
-          <GiCartwheel
-            className={
-              pathname.includes("/admin/spinHistory")
-                ? "bg-[#0F8BB6] p-1 rounded-md text-3xl cursor-pointer  mb-4 -ml-3 text-black"
-                : " text-3xl cursor-pointer mb-4 -ml-3 text-white"
-            }
-          />
-        )}
-
-        {/* {user.role === "SuperAdmin" && (
-          <div>
-            {isExpandSidebar ? (
-              <div
-                onClick={() => {
-                  navigate.push("/admin/ipAddress");
-                }}
-                style={{
-                  backgroundColor: pathname.includes("/admin/ipAddress")
-                    ? "#0F8BB6"
-                    : "",
-                }}
-                className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 rounded-md mb-3 flex items-center gap-2 transition-all duration-2000 ease-in-out"
-              >
-                <GiPaddles
-                  className={
-                    pathname.includes("/admin/ipAddress")
-                      ? "text-xl text-black"
-                      : " text-xl text-white"
-                  }
-                />
-                <Link
-                  className="transition-all duration-1000 ease-in-out"
-                  to=""
-                >
-                  IP Address
-                </Link>
-              </div>
-            ) : (
-              <GiPaddles
-                onClick={() => setIsExpandSidebar(!isExpandSidebar)}
-                className={
-                  pathname.includes("/admin/ipAdress")
-                    ? "bg-[#0F8BB6] p-1 rounded-md text-3xl cursor-pointer  mb-4 -ml-3 text-black"
-                    : " text-3xl cursor-pointer mb-4 -ml-3 text-white"
-                }
-              />
-            )}
-          </div>
-        )} */}
 
         {isExpandSidebar ? (
           <div
@@ -234,8 +129,7 @@ const Sidebar = () => {
                 ? "#0F8BB6"
                 : "",
             }}
-            className="text-base  cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 mb-3 rounded-md flex items-center gap-2 transition-all duration-2000 ease-in-out"
-          >
+            className="text-base  cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 mb-3 rounded-md flex items-center gap-2 transition-all duration-2000 ease-in-out">
             <IoSettings
               className={
                 pathname.includes("/admin/siteSettings")
@@ -254,51 +148,21 @@ const Sidebar = () => {
             }
           />
         )}
-
-        {/* {user.role === "SuperAdmin" && (
-          <div>
-            {isExpandSidebar ? (
-              <div
-                onClick={() => {
-                  navigate.push("/admin/adminList");
-                }}
-                style={{
-                  backgroundColor: pathname.includes("/admin/adminList")
-                    ? "#0F8BB6"
-                    : "",
-                }}
-                className="text-base  cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 mb-3 rounded-md flex items-center gap-2 transition-all duration-2000 ease-in-out"
-              >
-                <GrUserAdmin
-                  className={
-                    pathname.includes("/admin/adminList")
-                      ? "text-xl text-black"
-                      : " text-xl text-white"
-                  }
-                />
-                <Link to="">Admins</Link>
-              </div>
-            ) : (
-              <GrUserAdmin
-                className={
-                  pathname.includes("/admin/adminList")
-                    ? "bg-[#0F8BB6] p-1 rounded-md text-3xl cursor-pointer  mb-4 -ml-3 text-black"
-                    : " text-3xl cursor-pointer mb-4 -ml-3 text-white"
-                }
-              />
-            )}
-          </div>
-        )} */}
       </div>
 
       <div className="">
         {isExpandSidebar ? (
-          <div className="w-[80%]  text-base cursor-pointer text-white bg-[#3f99b4]  px-3 py-2 rounded-md mb-3 flex items-center gap-2 transition-all duration-2000 ease-in-out">
+          <button
+            onClick={() => {
+              localStorage.removeItem("user");
+              navigate.push("/login");
+            }}
+            className="w-[80%]  text-base cursor-pointer text-white bg-[#3f99b4]  px-3 py-2 rounded-md mb-3 flex items-center gap-2 transition-all duration-2000 ease-in-out">
             <IoMdExit className="text-2xl text-white" />
             <span className="transition-all duration-1000 ease-in-out">
               Log Out
             </span>
-          </div>
+          </button>
         ) : (
           <IoMdExit className="text-3xl cursor-pointer absolute bottom-3 text-white -ml-3" />
         )}

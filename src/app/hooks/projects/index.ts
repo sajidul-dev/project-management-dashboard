@@ -6,7 +6,7 @@ async function getData() {
   return response;
 }
 
-export default async function getMovies() {
+export default async function getProjects() {
   const data = await getData();
   return data;
 }

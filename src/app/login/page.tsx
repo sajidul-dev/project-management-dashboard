@@ -1,10 +1,16 @@
 "use client";
 import { TinyColor } from "@ctrl/tinycolor";
-import { Button, ConfigProvider, Input } from "antd";
+import { SubmitHandler, useForm } from "react-hook-form";
+import getUser from "../hooks/login";
+import Input from "../components/Shared/Input";
+import { useState } from "react";
+import Loading from "../loading";
+import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-type FieldType = {
-  username?: string;
+type Inputs = {
+  email?: string;
   password?: string;
   remember?: string;
 };
@@ -17,15 +23,62 @@ const getActiveColors = (colors: string[]) =>
 
 const Login = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (data.email && data.password) {
+      try {
+        setLoading(true);
+        const result = await getUser(data.email, data.password); // Wait for getUser to return
+        if (result) {
+          toast.success("Login successfull.", {
+            style: {
+              border: "1px solid #713200",
+              padding: "16px",
+              color: "#3B82F6",
+            },
+            iconTheme: {
+              primary: "#3B82F6",
+              secondary: "#FFFAEE",
+            },
+          });
+          localStorage.setItem("user", JSON.stringify(result));
+          router.push("/dashboard");
+        } else {
+          toast.error("Login unsuccessfull.", {
+            style: {
+              border: "1px solid #713200",
+              padding: "16px",
+              color: "#ff0000",
+            },
+            iconTheme: {
+              primary: "#ff0000",
+              secondary: "#FFFAEE",
+            },
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+  if (loading) return <Loading />;
   return (
     <div
       style={{
-        // background: "rgb(204,143,170)",
         background:
           "radial-gradient(circle, rgba(204,143,170,1) 0%, rgba(72,132,203,1) 100%)",
       }}
-      className="flex justify-center items-center h-[100vh]"
-    >
+      className="flex justify-center items-center h-[100vh]">
       <div className="w-[90vw] md:w-[50vw] lg:w-[40vw] border-2 border-white bg-white h-[70vh] py-5 px-5 rounded-md">
         {/* page title start */}
         <div className="text-center my-5">
@@ -34,59 +87,54 @@ const Login = () => {
         {/* page title end */}
 
         {/* from start */}
-        <form className="w-full flex flex-col gap-y-8 px-5">
-          <div className="flex flex-col items-start gap-y-2">
-            <label className="text-gray-700 text-sm" htmlFor="username">
-              Username
-            </label>
-            <Input placeholder="Type yours username" />
-            {/* <input
-              type="text"
-              placeholder="Type yours username"
-              className="w-full text-sm px-2 py-1 outline-none border-b-2 border-gray-300 focus:border-blue-700"
-            /> */}
-          </div>
-
-          <div className="flex flex-col items-start gap-y-2">
-            <label className="text-gray-700 text-sm" htmlFor="password">
-              Password
-            </label>
-            <Input.Password placeholder="Input password" />
-            {/* <input
-              type="password"
-              placeholder="Type your password"
-              className="w-full text-sm px-2 py-1 outline-none border-b-2 border-gray-300"
-            /> */}
-          </div>
-
-          <ConfigProvider
-            theme={{
-              components: {
-                Button: {
-                  colorPrimary: `linear-gradient(135deg, ${colors1.join(
-                    ", "
-                  )})`,
-                  colorPrimaryHover: `linear-gradient(135deg, ${getHoverColors(
-                    colors1
-                  ).join(", ")})`,
-                  colorPrimaryActive: `linear-gradient(135deg, ${getActiveColors(
-                    colors1
-                  ).join(", ")})`,
-                  lineWidth: 0,
-                },
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full flex flex-col gap-y-8 px-5">
+          <Input
+            register={register("email", {
+              required: {
+                value: true,
+                message: "Email is required",
               },
-            }}
-          >
-            <Button
-              className="font-bold"
-              style={{ fontWeight: "700" }}
-              shape="round"
-              type="primary"
-              size="large"
-            >
-              Login
-            </Button>
-          </ConfigProvider>
+            })}
+            type="email"
+            placeholder="Enter your email"
+            className="mt-4 w-full"
+            error={errors.email?.message}
+          />
+          <div className="relative">
+            <Input
+              register={register("password", {
+                required: {
+                  value: true,
+                  message: "Password is required",
+                },
+                pattern: {
+                  value:
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_+=?<>{}])(?=.*[^\w\s]).{6,}$/,
+                  message:
+                    "Password must contain a upper case, a lower case, a number, a special character",
+                },
+              })}
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
+              className="my-4 w-full"
+              error={errors.password?.message}
+            />
+            <button
+              className="pr-4 absolute right-0 top-7"
+              onClick={(event) => {
+                event.preventDefault();
+                setShowPassword((prev) => !prev);
+              }}>
+              {showPassword ? <RxEyeOpen /> : <RxEyeClosed />}
+            </button>
+          </div>
+          <Input
+            type="submit"
+            value="Log in"
+            className="cursor-pointer w-full bg-blue-500 hover:bg-opacity-70"
+          />
         </form>
         {/* from start */}
       </div>

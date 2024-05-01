@@ -1,11 +1,13 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import getMovies from "../../hooks/projects";
 import Loading from "../../loading";
+import getProjects from "../../hooks/projects";
+import ProjectCard from "@/app/components/ProjectCard";
+import { Project } from "@/types/project";
 
 const Dashboard = () => {
   const { data, isLoading, isError } = useQuery({
-    queryFn: async () => await getMovies(),
+    queryFn: async () => await getProjects(),
     queryKey: ["projects"],
   });
 
@@ -16,6 +18,14 @@ const Dashboard = () => {
     <div>
       <p>Dashboard</p>
       <p>Data :{data?.length}</p>
+      {data &&
+        data.map((project: Project) => {
+          return (
+            <div key={project.project_id}>
+              <ProjectCard project={project} />
+            </div>
+          );
+        })}
     </div>
   );
 };
