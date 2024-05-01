@@ -7,10 +7,18 @@
       {
         "task_id": 1,
         "task_title": "Task one",
-        "task_description": "kkkkkk",
+        "task_description": "this is task one",
         "task_status": { "status_id": 1 },
         "assign_to": [1, 2],
-        "deadline": ""
+        "deadline": "Thu May 02 2024 01:31:46 GMT+0600 (Bangladesh Standard Time)"
+      },
+      {
+        "task_id": 2,
+        "task_title": "Task two",
+        "task_description": "this is task two",
+        "task_status": { "status_id": 1 },
+        "assign_to": [1, 2],
+        "deadline": "Thu May 02 2024 01:31:46 GMT+0600 (Bangladesh Standard Time)"
       }
     ],
     "recent_activities": [{ "status_id": 1, "date": "fdfff" }],
@@ -26,12 +34,12 @@
         "task_title": "Task",
         "task_description": "kkkkkk",
         "task_status": {},
-        "assign_to": [{}],
-        "deadline": ""
+        "assign_to": [1, 2],
+        "deadline": "Thu May 02 2024 01:31:46 GMT+0600 (Bangladesh Standard Time)"
       }
     ],
     "recent_activities": [],
-    "member": []
+    "member": [1, 2]
   },
   {
     "project_id": 3,
@@ -44,10 +52,10 @@
         "task_description": "kkkkkk",
         "task_status": {},
         "assign_to": [{}],
-        "deadline": ""
+        "deadline": "Thu May 02 2024 01:31:46 GMT+0600 (Bangladesh Standard Time)"
       }
     ],
     "recent_activities": [],
-    "member": []
+    "member": [1, 2]
   }
 ]

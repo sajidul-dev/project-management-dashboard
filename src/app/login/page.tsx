@@ -3,7 +3,7 @@ import { TinyColor } from "@ctrl/tinycolor";
 import { SubmitHandler, useForm } from "react-hook-form";
 import getUser from "../hooks/login";
 import Input from "../components/Shared/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../loading";
 import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
 import toast from "react-hot-toast";
@@ -31,6 +31,14 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
+
+  // useEffect(() => {
+  //   // Perform localStorage action
+  //   const user = localStorage.getItem("user");
+  //   if (user) {
+  //     router.push("/dashboard");
+  //   }
+  // }, [router]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (data.email && data.password) {
