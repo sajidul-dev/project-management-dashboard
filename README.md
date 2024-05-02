@@ -1,18 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Project Management Application [Live Site](https://ph-project-management.netlify.app/)
 
 ## Getting Started
 
-First, run the development server:
+To run this project in your local machine, run the development server:
 
-```bash
-npm run dev
-# or
+yarn install
+
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+
+To login please enter
+
+email: user@gmail.com
+pass: aB3@9x
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

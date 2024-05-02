@@ -50,69 +50,7 @@ const Sidebar = () => {
           <FaHouse
             onClick={() => setIsExpandSidebar(!isExpandSidebar)}
             className={
-              pathname === "/admin"
-                ? "bg-[#0F8BB6] p-1 rounded-md text-3xl cursor-pointer  mb-4 -ml-3 text-black"
-                : " text-3xl cursor-pointer mb-4 -ml-3 text-white"
-            }
-          />
-        )}
-
-        {isExpandSidebar ? (
-          <div
-            onClick={() => {
-              navigate.push("/admin/users");
-            }}
-            style={{
-              backgroundColor: pathname.includes("/admin/users")
-                ? "#0F8BB6"
-                : "",
-            }}
-            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 rounded-md mb-3 flex items-center gap-2 transition-all duration-2000 ease-in-out">
-            <PiUsersFourFill
-              className={
-                pathname.includes("/admin/users")
-                  ? "text-xl text-black"
-                  : " text-xl text-white"
-              }
-            />
-            <Link className="transition-all duration-1000 ease-in-out" href="">
-              Users
-            </Link>
-          </div>
-        ) : (
-          <PiUsersFourFill
-            onClick={() => setIsExpandSidebar(!isExpandSidebar)}
-            className={
-              pathname.includes("/admin/users")
-                ? "bg-[#0F8BB6] p-1 rounded-md text-3xl cursor-pointer  mb-4 -ml-3 text-black"
-                : " text-3xl cursor-pointer mb-4 -ml-3 text-white"
-            }
-          />
-        )}
-        {isExpandSidebar ? (
-          <div
-            onClick={() => {
-              navigate.push("/admin/players");
-            }}
-            style={{
-              backgroundColor: pathname.includes("/admin/players")
-                ? "#0F8BB6"
-                : "",
-            }}
-            className="text-base cursor-pointer hover:bg-red-100 hover:opacity-[.8] hover:text-black text-white px-3 py-2 mb-3 rounded-md flex items-center gap-2 transition-all duration-2000 ease-in-out">
-            <GiTabletopPlayers
-              className={
-                pathname.includes("/admin/players")
-                  ? "text-xl text-black"
-                  : " text-xl text-white"
-              }
-            />
-            <Link href="">Task Management</Link>
-          </div>
-        ) : (
-          <GiTabletopPlayers
-            className={
-              pathname.includes("/admin/players")
+              pathname === "/"
                 ? "bg-[#0F8BB6] p-1 rounded-md text-3xl cursor-pointer  mb-4 -ml-3 text-black"
                 : " text-3xl cursor-pointer mb-4 -ml-3 text-white"
             }

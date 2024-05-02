@@ -8,5 +8,6 @@ async function getData() {
 
 export default async function getProjects() {
   const data = await getData();
+
   return data;
 }

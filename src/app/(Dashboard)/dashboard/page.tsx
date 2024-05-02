@@ -5,9 +5,11 @@ import getProjects from "../../hooks/projects";
 import ProjectCard from "@/app/components/ProjectCard";
 import { Project } from "@/types/project";
 import { useEffect, useState } from "react";
+import { useStore } from "zustand";
 
 const Dashboard = () => {
   const [projects, setProjects] = useState<Project[]>([]);
+  // const setProjectsToGlobal = useStore((state: any) => state.setProjects);
 
   const { data, isLoading, isError } = useQuery({
     queryFn: async () => await getProjects(),

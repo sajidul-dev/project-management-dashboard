@@ -44,7 +44,7 @@ const Login = () => {
     if (data.email && data.password) {
       try {
         setLoading(true);
-        const result = await getUser(data.email, data.password); // Wait for getUser to return
+        const result = await getUser(data.email, data.password);
         if (result) {
           toast.success("Login successfull.", {
             style: {

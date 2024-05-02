@@ -47,7 +47,7 @@ const ProjectCard = ({
         </p>
         <hr />
         <p>{project.description}</p>
-        <div className="flex justify-around">
+        <div className="flex justify-around gap-5 flex-wrap">
           <Button
             onClick={() =>
               router.push(`/dashboard/project/${project.project_id}`)
@@ -55,9 +55,7 @@ const ProjectCard = ({
             type="primary">
             View
           </Button>
-          {/* <Button style={{ backgroundColor: "rgb(34 197 94)" }} type="primary">
-            Edit
-          </Button> */}
+
           <Button
             type="primary"
             style={{

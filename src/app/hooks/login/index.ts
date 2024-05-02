@@ -1,6 +1,4 @@
-import { Inputs } from "@/types/login";
-
-async function userLogin() {
+export async function userLogin() {
   const response = await fetch("/users.json")
     .then((response) => response.json())
     .catch((err) => console.error(err));
